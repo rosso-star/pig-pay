@@ -273,12 +273,6 @@ export default function PigPay() {
                       }
                     }}
                     allowMultiple={false}
-                    constraints={{
-                      facingMode: "environment"
-                    } as MediaTrackConstraints}
-                    styles={{
-                      container: { width: "100%", height: "100%" }
-                    }}
                   />
                   <div className="absolute inset-0 border-[40px] border-black/20 pointer-events-none"></div>
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-pink-500/50 rounded-3xl animate-pulse"></div>
