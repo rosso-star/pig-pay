@@ -266,14 +266,19 @@ export default function PigPay() {
                   <button onClick={() => setView('home')} className="p-2 bg-pink-50 rounded-full text-pink-400"><X size={24} /></button>
                 </div>
                 <div className="aspect-square rounded-[30px] overflow-hidden bg-black relative border-4 border-pink-50">
-                  <Scanner 
-                    onScan={(result) => { if (result?.[0]?.rawValue) setRecipient(result[0].rawValue); }} 
-                    allowMultiple={false}
-                    styles={{
-                      container: { width: '100%', height: '100%' },
-                      video: { width: '100%', height: '100%', objectFit: 'cover' }
+                  <Scanner
+                    onScan={(result) => {
+                      if (result?.[0]?.rawValue) {
+                        setRecipient(result[0].rawValue);
+                      }
                     }}
-                    constraints={{ facingMode: 'environment' }}
+                    allowMultiple={false}
+                    constraints={{
+                      facingMode: "environment"
+                    } as MediaTrackConstraints}
+                    styles={{
+                      container: { width: "100%", height: "100%" }
+                    }}
                   />
                   <div className="absolute inset-0 border-[40px] border-black/20 pointer-events-none"></div>
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-pink-500/50 rounded-3xl animate-pulse"></div>
