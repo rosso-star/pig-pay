@@ -4,12 +4,8 @@ export interface Transaction {
   amount: number;
   sender_username: string;
   receiver_username: string;
-<<<<<<< HEAD
   fee: number;
   description: string;
-=======
-  description: string; // 必須に修正（ビルドエラー回避のため）
->>>>>>> 3c700fce17704d4f52f151b6ac2aba8eade99f88
   created_at: string;
 }
 

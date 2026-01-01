@@ -78,9 +78,8 @@ export const MarketView = ({ balance, username, onRefresh }: MarketViewProps) =>
               <div className="aspect-square bg-gray-100 relative">
                 {item.image_url && <img src={item.image_url} alt={item.title} className="w-full h-full object-cover" />}
               </div>
-<<<<<<< HEAD
               
-              <div className="px-1">
+              <div className="px-1 p-6">
                 <div className="flex items-center gap-1 mb-1">
                   {item.is_official && <span className="text-[8px] bg-[#eb618e] text-white px-1.5 py-0.5 rounded-md font-black">OFFICIAL</span>}
                   <h3 className="font-black text-sm truncate text-[#332f2f]">{item.title}</h3>
@@ -106,21 +105,7 @@ export const MarketView = ({ balance, username, onRefresh }: MarketViewProps) =>
                   >
                     {item.stock <= 0 ? <span className="text-[8px]">売切</span> : buyingId === item.id ? <Loader2 size={16} className="animate-spin" /> : <ShoppingBag size={18} />}
                   </button>
-=======
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-black text-xl">{item.title}</h3>
-                  <span className="bg-[#fcf4f6] text-[#eb618e] px-3 py-1 rounded-full text-sm font-black">{item.price} 豚円</span>
->>>>>>> 3c700fce17704d4f52f151b6ac2aba8eade99f88
                 </div>
-                <p className="text-gray-400 text-sm mb-6 line-clamp-2">{item.description}</p>
-                <button 
-                  disabled={buyingId === item.id || item.stock <= 0}
-                  onClick={() => handleBuy(item)}
-                  className="w-full bg-[#332f2f] text-white py-4 rounded-2xl font-black disabled:bg-gray-200 transition-all"
-                >
-                  {buyingId === item.id ? "処理中..." : item.stock <= 0 ? "売り切れ" : "購入する"}
-                </button>
               </div>
             </div>
           ))}
