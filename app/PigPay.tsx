@@ -91,20 +91,34 @@ export default function PigPay() {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    // 環境変数から設定を読み込む
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
+
+    if (!cloudName || !uploadPreset) {
+      alert("Cloudinaryの設定（環境変数）が見つかりません。");
+      return;
+    }
+
     setUploading(true);
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'your_preset_name'); // Cloudinaryの設定に合わせて変更
+    formData.append('upload_preset', uploadPreset);
 
     try {
-      const res = await fetch(`https://api.cloudinary.com/v1_1/your_cloud_name/image/upload`, {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
         method: 'POST',
         body: formData,
       });
+      
+      if (!res.ok) throw new Error('アップロードに失敗しました');
+      
       const data = await res.json();
       setNewItem({ ...newItem, image_url: data.secure_url });
     } catch (err) {
-      alert("アップロード失敗");
+      console.error(err);
+      alert("画像のアップロードに失敗しました。設定を確認してください。");
     } finally {
       setUploading(false);
     }
