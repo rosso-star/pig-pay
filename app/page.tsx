@@ -8,6 +8,7 @@ import { AuthView } from '@/components/AuthView';
 import { HomeView } from '@/components/HomeView';
 import { SendView } from '@/components/SendView';
 import { ReceiveView } from '@/components/ReceiveView';
+import { MarketView } from '@/components/MarketView';
 import { PigPayLogo } from '@/components/PigPayComponents';
 import { LayoutDashboard, ShoppingBag, QrCode, Download, LogOut } from 'lucide-react';
 
@@ -71,10 +72,11 @@ export default function PigPay() {
         )}
 
         {view === 'market' && (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-black text-[#eb618e]">Pig Market</h2>
-            <p className="text-gray-400 mt-2">準備中です！お楽しみに！</p>
-          </div>
+          <MarketView 
+            balance={balance} 
+            username={username} 
+            onRefresh={fetchData} 
+          />
         )}
       </main>
 
