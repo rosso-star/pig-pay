@@ -1,4 +1,6 @@
 "use client";
+export const runtime = 'edge';
+
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { usePigPay } from '@/hooks/usePigPay';
