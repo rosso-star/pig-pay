@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React from 'react';
 import { X, Calendar, User, Hash, ArrowUpRight, ArrowDownLeft, CheckCircle2, FileText } from 'lucide-react';

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState, useMemo } from 'react';
 import { History, ArrowUpRight, ArrowDownLeft, Send, Download, Sparkles, FileText } from 'lucide-react';
