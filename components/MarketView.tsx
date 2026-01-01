@@ -165,6 +165,13 @@ export const MarketView = ({ balance, username, onRefresh }: any) => {
                   {item.is_official && <span className="text-[8px] bg-[#eb618e] text-white px-1.5 py-0.5 rounded-md font-black">OFFICIAL</span>}
                   <h3 className="font-black text-sm truncate text-[#332f2f]">{item.title}</h3>
                 </div>
+
+                {item.description && (
+                  <p className="text-[10px] text-gray-500 mb-2 line-clamp-2 leading-relaxed font-medium">
+                    {item.description}
+                  </p>
+                )}
+
                 <p className="text-[10px] text-gray-400 mb-4 line-clamp-1 font-bold">@{item.seller_username}</p>
                 
                 <div className="flex items-center justify-between mt-auto">

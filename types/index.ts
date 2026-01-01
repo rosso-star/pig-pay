@@ -3,6 +3,7 @@ export interface Transaction {
   amount: number;
   sender_username: string;
   receiver_username: string;
+  fee: number;
   description: string;
   created_at: string;
 }
