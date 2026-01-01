@@ -1,10 +1,14 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react'; // useStateを追加
 import { History, ArrowUpRight, ArrowDownLeft, Send, Download } from 'lucide-react';
 import { BalanceCard } from './PigPayComponents';
 import { Transaction } from '@/types';
+import { TransactionDetailModal } from './TransactionDetailModal'; // 詳細モーダルをインポート
 
 export const HomeView = ({ balance, username, transactions, onRefresh, loading, setView, setSendStep }: any) => {
+  // ★ 選択された取引を管理するステートを追加
+  const [selectedTx, setSelectedTx] = useState<Transaction | null>(null);
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-6 duration-700 space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -27,7 +31,12 @@ export const HomeView = ({ balance, username, transactions, onRefresh, loading, 
           {transactions.map((tx: Transaction) => {
             const isOut = tx.sender_username === username;
             return (
-              <div key={tx.id} className="flex items-center justify-between p-4 hover:bg-[#fcf4f6] rounded-[2rem] transition-all border border-transparent hover:border-[#f8d7e3]">
+              <div 
+                key={tx.id} 
+                // ★ クリック時に詳細データをセットする処理を追加
+                onClick={() => setSelectedTx(tx)} 
+                className="flex items-center justify-between p-4 hover:bg-[#fcf4f6] rounded-[2rem] transition-all border border-transparent hover:border-[#f8d7e3] cursor-pointer"
+              >
                 <div className="flex items-center gap-5">
                   <div className={`p-4 rounded-2xl ${isOut ? 'bg-gray-100 text-gray-400' : 'bg-[#fcf4f6] text-[#eb618e]'}`}>
                     {isOut ? <ArrowUpRight size={20} /> : <ArrowDownLeft size={20} />}
@@ -45,6 +54,15 @@ export const HomeView = ({ balance, username, transactions, onRefresh, loading, 
           })}
         </div>
       </div>
+
+      {/* ★ 詳細モーダルの表示条件を追加 */}
+      {selectedTx && (
+        <TransactionDetailModal 
+          tx={selectedTx} 
+          username={username} 
+          onClose={() => setSelectedTx(null)} 
+        />
+      )}
     </div>
   );
 };
