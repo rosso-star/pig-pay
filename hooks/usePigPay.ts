@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Transaction } from '@/types';
+import { Session } from '@supabase/supabase-js';
 
-export function usePigPay(session: any) {
+export function usePigPay(session: Session | null) {
   const [balance, setBalance] = useState<number>(0);
   const [username, setUsername] = useState<string>("");
   const [transactions, setTransactions] = useState<Transaction[]>([]);
@@ -21,22 +22,25 @@ export function usePigPay(session: any) {
           .order('created_at', { ascending: false }).limit(8);
         if (txData) setTransactions(txData);
       }
-    } catch (err) { console.error(err); }
-    finally { setLoading(false); }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(() => { if (session) fetchData(); }, [session]);
+  useEffect(() => {
+    if (session) fetchData();
+  }, [session]);
 
   const transfer = async (recipient: string, amount: number, message: string = '送金') => {
     const { error } = await supabase.rpc('transfer_pigen', {
       sender_username: username,
       receiver_username: recipient,
-      amount: amount,
-      msg: message // ← 第4の引数として追加
+      amount_val: amount,
+      description_val: message
     });
-
     if (error) throw error;
-    await fetchData();
   };
 
   return { balance, username, transactions, loading, fetchData, transfer };
