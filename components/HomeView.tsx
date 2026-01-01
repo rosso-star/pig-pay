@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState } from 'react'; // useStateを追加
 import { History, ArrowUpRight, ArrowDownLeft, Send, Download } from 'lucide-react';

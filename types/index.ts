@@ -1,9 +1,10 @@
+// types/index.ts
 export interface Transaction {
   id: string;
   amount: number;
   sender_username: string;
   receiver_username: string;
-  description?: string; // descriptionをオプション、または必須に
+  description: string; // 必須に修正（ビルドエラー回避のため）
   created_at: string;
 }
 
@@ -20,5 +21,6 @@ export interface MarketItem {
   description: string;
   image_url: string;
   seller_username: string;
-  is_official?: boolean;
+  is_official?: boolean; // オプション
+  created_at?: string;
 }
