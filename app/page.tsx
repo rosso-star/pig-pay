@@ -58,7 +58,7 @@ export default function PigPay() {
         {view === 'send' && (
           <SendView 
             balance={balance} 
-            onTransfer={transfer} 
+            onTransfer={(target: string, amount: number, msg: string) => transfer(target, amount, msg)} 
             onClose={() => setView('home')} 
           />
         )}

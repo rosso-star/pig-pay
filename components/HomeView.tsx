@@ -41,10 +41,18 @@ export const HomeView = ({ balance, username, transactions, onRefresh, loading, 
                   <div className={`p-4 rounded-2xl ${isOut ? 'bg-gray-100 text-gray-400' : 'bg-[#fcf4f6] text-[#eb618e]'}`}>
                     {isOut ? <ArrowUpRight size={20} /> : <ArrowDownLeft size={20} />}
                   </div>
-                  <div>
-                    <p className="text-sm font-black text-[#332f2f]">{isOut ? `@${tx.receiver_username} へ` : `@${tx.sender_username} から`}</p>
-                    <p className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-tighter">{new Date(tx.created_at).toLocaleDateString()}</p>
-                  </div>
+                    <div>
+                    <p className="text-sm font-black text-[#332f2f]">
+                        {isOut ? `@${tx.receiver_username} へ` : `@${tx.sender_username} から`}
+                    </p>
+                    {/* メッセージがあれば表示、なければ日付を表示 */}
+                    <p className="text-[10px] text-[#eb618e] font-bold mt-0.5 truncate max-w-[120px]">
+                        {tx.description || "送金"} 
+                    </p>
+                    <p className="text-[8px] text-gray-300 font-bold uppercase tracking-tighter">
+                        {new Date(tx.created_at).toLocaleDateString()}
+                    </p>
+                    </div>
                 </div>
                 <span className={`font-mono font-black text-lg ${isOut ? 'text-gray-400' : 'text-[#eb618e]'}`}>
                   {isOut ? '-' : '+'}{tx.amount.toLocaleString()} <span className="text-[10px] font-sans">豚円</span>

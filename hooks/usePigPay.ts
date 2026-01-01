@@ -27,12 +27,14 @@ export function usePigPay(session: any) {
 
   useEffect(() => { if (session) fetchData(); }, [session]);
 
-  const transfer = async (recipient: string, amount: number) => {
+  const transfer = async (recipient: string, amount: number, message: string = '送金') => {
     const { error } = await supabase.rpc('transfer_pigen', {
       sender_username: username,
-      receiver_username: recipient.replace('@', ''),
-      amount: amount
+      receiver_username: recipient,
+      amount: amount,
+      msg: message // ← 第4の引数として追加
     });
+
     if (error) throw error;
     await fetchData();
   };

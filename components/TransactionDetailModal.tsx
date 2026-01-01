@@ -25,6 +25,13 @@ export const TransactionDetailModal = ({ tx, username, onClose }: any) => {
           </p>
         </div>
 
+        <div className="bg-[#fcf4f6] p-6 rounded-3xl mb-8 border-2 border-dashed border-[#f8d7e3]">
+        <p className="text-[10px] text-[#eb618e] font-black uppercase tracking-widest mb-2">取引メッセージ</p>
+        <p className="text-lg font-black text-[#332f2f]">
+            {tx.description || "（メッセージなし）"}
+        </p>
+        </div>
+
         <div className="space-y-6 border-t border-gray-50 pt-8">
           <div className="flex items-center gap-4 text-sm">
             <Calendar size={18} className="text-[#eb618e]/40" />
